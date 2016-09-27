@@ -32,7 +32,7 @@ body {
 
 #video1 {
     width: 100%;
-    display: block;
+display: block;
 }
 
 #ad1 {
@@ -41,6 +41,8 @@ body {
     background-color: #ccc;
     position: absolute;
     visibility: visible;
+    top: 100px;
+    left: 30%;
 }
 
 #btn1 {
@@ -60,7 +62,7 @@ body {
 }
 
 #j_jindu {
-    background-color: #999;
+background-color: #999;
     /*background-color: rgba(255,255,255, 1);*/
     height: 30px;
     width: 100%;
@@ -142,7 +144,6 @@ body {
     float: left;
     margin: 8px 0;
 }
-
 #music_tiao {
     display: inline-block;
     float: left;
