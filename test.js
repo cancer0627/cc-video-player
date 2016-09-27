@@ -10,6 +10,7 @@
     var jindu_buffer = document.getElementById('jindu_buffer');
     var jindu_current = document.getElementById('jindu_current');
     var btn_music = document.getElementById('btn_music');
+    var music_tiao = document.getElementById('music_tiao');
     var music_duration = document.getElementById('music_duration');
     var music_current = document.getElementById('music_current');
     //开始，暂停
@@ -60,12 +61,13 @@
         video1.poster = "source/video1.jpg";
         show_jindu();
         jindu_cur();
+        music_cur();
     });
     //视频播放时
     video1.ontimeupdate = function() {
-        //console.log('video 播放ing');
         show_jindu();
         jindu_cur();
+        music_cur();
     }
 
     //进度
@@ -87,10 +89,15 @@
     }
 
     function jindu_cur() {
-        jindu_duration.style.width = (video1.duration / video1.duration) * 100 + '%';
+        jindu_duration.style.width ='100%';
         jindu_buffer.style.width = ((video1.buffered.length + video1.currentTime) / video1.duration) * 100 + '%';
         jindu_current.style.width = (video1.currentTime / video1.duration) * 100 + '%';
     }
-
+    //音量条
+function music_cur(){
+    console.log(video1.volume);
+    music_duration.style.width = "100%";
+    music_current.style.width = (video1.volume* 100 )+ '%';
+}
 
 }(window))

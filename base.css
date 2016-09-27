@@ -81,7 +81,7 @@ background-color: #999;
 #jindu {
     display: inline-block;
     float: left;
-    background-color: #000;
+
     color: #fff;
     font-size: 14px;
     line-height: 30px;
@@ -92,7 +92,7 @@ background-color: #999;
     display: inline-block;
     float: left;
     position: relative;
-    width: 50%;
+    width: 60%;
     height: 10px;
     margin: 10px 20px;
     /*border: 1px solid #fff;*/
@@ -148,7 +148,7 @@ background-color: #999;
     display: inline-block;
     float: left;
     position: relative;
-    width: 20%px;
+    width: 10%;
     height: 10px;
     margin: 10px 20px;
     /*border: 1px solid #fff;*/
