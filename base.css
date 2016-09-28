@@ -5,7 +5,7 @@ body {
 #v_video1 {
     position: relative;
     width: 80%;
-    margin: 50px auto;
+    margin: 80px auto;
     min-width: 800px;
     padding: 0;
     border: 1px solid #555;
@@ -15,8 +15,8 @@ body {
 
 #media_player {
     text-align: center;
-    padding: 10px;
-    background-color: green;
+    padding: 20px;
+    background-color: rgb(195, 232, 108);
     border-bottom: 1px solid #ccc;
     font-family: 微软雅黑;
     color: #fff;
@@ -32,25 +32,27 @@ body {
 
 #video1 {
     width: 100%;
-display: block;
+    display: block;
 }
 
 #ad1 {
-    width: 300px;
-    height: 300px;
+    width: 40%;
+    height: 40%;
     background-color: #ccc;
     position: absolute;
     visibility: visible;
-    top: 100px;
+    top: 30%;
     left: 30%;
+    text-align: center;
+}
+#ad1 > img:first-child{
+    height: 100%;
 }
 
 #btn1 {
+    position: absolute;
     width: 30px;
     height: 30px;
-    display: inline-block;
-    float: right;
-    position: relative;
     right: -15px;
     top: -15px;
 }
@@ -62,7 +64,7 @@ display: block;
 }
 
 #j_jindu {
-background-color: #999;
+    background-color: #999;
     /*background-color: rgba(255,255,255, 1);*/
     height: 30px;
     width: 100%;
@@ -72,16 +74,17 @@ background-color: #999;
     position: absolute;
 }
 
-#btn_start {
+#btn_start,
+#btn_kuaijin,
+#btn_kuaitui {
     display: inline-block;
     float: left;
-    margin: 8px 20px;
+    margin: 8px 10px;
 }
 
 #jindu {
     display: inline-block;
     float: left;
-
     color: #fff;
     font-size: 14px;
     line-height: 30px;
@@ -92,7 +95,7 @@ background-color: #999;
     display: inline-block;
     float: left;
     position: relative;
-    width: 60%;
+    width: 50%;
     height: 10px;
     margin: 10px 20px;
     /*border: 1px solid #fff;*/
@@ -124,13 +127,12 @@ background-color: #999;
     border-radius: 5px;
     height: 8px;
     background-color: #f7f7f7;
-    //border: 1px solid #fff;
 }
 
 #jindu_button {
     position: absolute;
     top: -3px;
-    right: -8px;
+    right: -10px;
     z-index: 20;
     border-radius: 5px;
     border: 1px solid #fff;
@@ -140,10 +142,21 @@ background-color: #999;
 }
 
 #btn_music {
+    background-color: #ccc;
     display: inline-block;
     float: left;
-    margin: 8px 0;
+    width: 18px;
+    margin-top: -30px;
 }
+
+#btn_music_con,
+#btn_music_up,
+#btn_music_down {
+    display: block;
+    margin: 8px 0;
+    float: left;
+}
+
 #music_tiao {
     display: inline-block;
     float: left;
@@ -170,17 +183,16 @@ background-color: #999;
     border-radius: 5px;
     height: 8px;
     background-color: #f7f7f7;
-    //border: 1px solid #fff;
 }
 
 #music_button {
     position: absolute;
     top: -3px;
-    right: -8px;
+    right: -7px;
     z-index: 20;
-    border-radius: 5px;
+    border-radius: 6px;
     border: 1px solid #fff;
     height: 12px;
-    width: 18px;
+    width: 12px;
     background-color: #fff;
 }

@@ -9,48 +9,74 @@
     var jindu_duration = document.getElementById('jindu_duration');
     var jindu_buffer = document.getElementById('jindu_buffer');
     var jindu_current = document.getElementById('jindu_current');
-    var btn_music = document.getElementById('btn_music');
+    var jindu_button = document.getElementById('jindu_button');
+    var btn_music_con = document.getElementById('btn_music_con');
     var music_tiao = document.getElementById('music_tiao');
     var music_duration = document.getElementById('music_duration');
     var music_current = document.getElementById('music_current');
-    //开始，暂停
+    var music_button = document.getElementById('music_button');
+    var btn_music_up = document.getElementById('btn_music_up');
+    var btn_music_down = document.getElementById('btn_music_down');
+    var btn_kuaijin = document.getElementById('btn_kuaijin');
+    var btn_kuaitui = document.getElementById('btn_kuaitui');
+
+    //开始，暂停，快进
     btn_start.onclick = function playpause() {
-            if (video1.paused) {
-                video1.play();
-                btn_start.src = "source/stop.png";
-            } else {
-                video1.pause();
-                btn_start.src = "source/start.png";
-            }
-        }
-        //有声，无声
-    btn_music.onclick = function() {
-            if (video1.muted) {
-                video1.muted = false;
-                btn_music.src = "source/musicup.png";
-            } else {
-                video1.muted = true;
-                btn_music.src = "source/musicdown.png";
-            }
-        }
-        //视频开始
-    video1.onplay = function() {
-            console.log("video play");
-            ad1.style.display = "none";
-            btn2.style.display = "none";
+        if (video1.paused) {
+            video1.play();
             btn_start.src = "source/stop.png";
-        }
-        //视频暂停
-    video1.onpause = function() {
-            ad1.style.display = 'initial';
-            btn2.style.display = 'initial';
+        } else {
+            video1.pause();
             btn_start.src = "source/start.png";
         }
-        //广告关闭
-    btn1.onclick = function() {
-            ad1.style.display = "none";
+    }
+    video1.ondblclick = function playpause() {
+        if (video1.paused) {
+            video1.play();
+            btn_start.src = "source/stop.png";
+        } else {
+            video1.pause();
+            btn_start.src = "source/start.png";
         }
-        //开始按钮
+    }
+    btn_kuaijin.onclick = function() {
+        video1.currentTime += 5;
+    }
+    btn_kuaitui.onclick = function() {
+            video1.currentTime -= 5;
+        }
+        //有声，无声
+    btn_music_con.onclick = function() {
+        if (video1.muted) {
+            video1.muted = false;
+            btn_music_con.src = "source/musicup1.png";
+        } else {
+            video1.muted = true;
+            btn_music_con.src = "source/musicdown.png";
+        }
+    }
+
+    //视频开始
+    video1.onplay = function() {
+        console.log("video play");
+        ad1.style.display = "none";
+        btn2.style.display = "none";
+        btn_start.src = "source/stop.png";
+    }
+
+    //视频暂停
+    video1.onpause = function() {
+        ad1.style.display = 'initial';
+        btn2.style.display = 'initial';
+        btn_start.src = "source/start.png";
+    }
+
+    //广告关闭
+    btn1.onclick = function() {
+        ad1.style.display = "none";
+    }
+
+    //开始按钮
     btn2.onclick = function() {
         video1.play();
     }
@@ -62,12 +88,15 @@
         show_jindu();
         jindu_cur();
         music_cur();
+        musicbtn();
     });
+
     //视频播放时
     video1.ontimeupdate = function() {
         show_jindu();
         jindu_cur();
         music_cur();
+        musicbtn();
     }
 
     //进度
@@ -89,15 +118,56 @@
     }
 
     function jindu_cur() {
-        jindu_duration.style.width ='100%';
+        jindu_duration.style.width = '100%';
         jindu_buffer.style.width = ((video1.buffered.length + video1.currentTime) / video1.duration) * 100 + '%';
         jindu_current.style.width = (video1.currentTime / video1.duration) * 100 + '%';
     }
+
     //音量条
-function music_cur(){
-    console.log(video1.volume);
-    music_duration.style.width = "100%";
-    music_current.style.width = (video1.volume* 100 )+ '%';
-}
+    function music_cur() {
+        console.log(video1.volume);
+        music_duration.style.width = "100%";
+        music_current.style.width = (video1.volume * 100) + '%';
+    }
+
+    //音量进度
+    function musicbtn() {
+        if (video1.volume > 0.66 && video1.volume <= 1) {
+            btn_music_con.src = "source/musicup3.png";
+        } else if (video1.volume > 0.33 && video1.volume <= 0.66) {
+            btn_music_con.src = "source/musicup2.png";
+        } else if (video1.volume > 0 && video1.volume <= 0.33) {
+            btn_music_con.src = "source/musicup1.png";
+        } else {
+            btn_music_con.src = "source/musicdown.png";
+        }
+    }
+    btn_music_up.onclick = function() {
+
+        if (video1.volume >= 0.9) {
+            video1.volume = 1;
+        } else {
+            video1.volume += 0.1;
+        }
+    }
+    btn_music_down.onclick = function() {
+        if (video1.volume <= 0.1) {
+            video1.volume = 0;
+        } else {
+            video1.volume -= 0.1;
+        }
+
+    }
+
+
+    //拖放
+    jindu_button.ondragstart = function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+    jindu_button.ondrop = function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+    }
 
 }(window))
