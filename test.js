@@ -30,6 +30,7 @@
             btn_start.src = "source/start.png";
         }
     }
+
     video1.ondblclick = function playpause() {
         if (video1.paused) {
             video1.play();
@@ -39,13 +40,16 @@
             btn_start.src = "source/start.png";
         }
     }
+
     btn_kuaijin.onclick = function() {
         video1.currentTime += 5;
     }
+
     btn_kuaitui.onclick = function() {
-            video1.currentTime -= 5;
-        }
-        //有声，无声
+        video1.currentTime -= 5;
+    }
+
+    //有声，无声
     btn_music_con.onclick = function() {
         if (video1.muted) {
             video1.muted = false;
@@ -83,13 +87,12 @@
 
     //视频加载时
     video1.addEventListener('loadedmetadata', function logg() {
-        console.log('loadedmetadata');
         video1.poster = "source/video1.jpg";
         show_jindu();
         jindu_cur();
         music_cur();
         musicbtn();
-    });
+    })
 
     //视频播放时
     video1.ontimeupdate = function() {
@@ -113,7 +116,6 @@
         } else {
             tim2 = parseInt(tim2 / 60) + ":" + tim2 % 60;
         }
-
         jindu.innerHTML = tim1 + "/" + tim2;
     }
 
@@ -125,7 +127,6 @@
 
     //音量条
     function music_cur() {
-        console.log(video1.volume);
         music_duration.style.width = "100%";
         music_current.style.width = (video1.volume * 100) + '%';
     }
@@ -142,32 +143,58 @@
             btn_music_con.src = "source/musicdown.png";
         }
     }
-    btn_music_up.onclick = function() {
 
+    btn_music_up.onclick = function() {
         if (video1.volume >= 0.9) {
             video1.volume = 1;
         } else {
             video1.volume += 0.1;
         }
     }
+
     btn_music_down.onclick = function() {
         if (video1.volume <= 0.1) {
             video1.volume = 0;
         } else {
             video1.volume -= 0.1;
         }
+    }
+
+    //音量拖放
+    video1.onvolumechange = function() {};
+    var x1, x2, xz, xzz, x;
+
+    music_button.ondragstart = function(event) {
+        x1 = event.clientX;
+        xz = music_current.clientWidth;
+        xzz = music_duration.clientWidth;
+
+        /*console.log(event.clientX);
+        console.log(music_current.offsetLeft);
+        console.log(music_current.clientWidth);*/
 
     }
 
+    /*music_button.ondragleave = function(event) {
+        console.log(event.clientX);
+    }*/
 
-    //拖放
-    jindu_button.ondragstart = function drag(ev) {
-        ev.dataTransfer.setData("Text", ev.target.id);
-    }
-    jindu_button.ondrop = function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("Text");
-        ev.target.appendChild(document.getElementById(data));
+    music_button.ondragend = function(event) {
+        x2 = event.clientX;
+        x = (xz - x1 + x2) / xzz;
+        if (x <= 0) {
+            video1.volume = 0;
+        } else if (x >= 1) {
+            video1.volume = 1;
+        } else {
+            video1.volume = x;
+        }
+        music_current.style.width = video1.volume * 100 + "%";
+        musicbtn();
+
+        /*console.log(event.clientX);
+        console.log(video1.volume);*/
+
     }
 
 }(window))

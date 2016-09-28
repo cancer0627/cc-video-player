@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="show" style="width:100px; height:100px; position:absolute; top:0px; left:0px; background:#669900">div1:我可以被拖动</div>
+    <script>
+    function drag(elem, container) {
+        var state = false,
+            original_x, original_y, zindex_buf;
+        var _container = container ? container : document;
+        elem.onmousedown = function(event) {
+            var e = event ? event : window.event;
+            original_x = e.clientX;
+            original_y = e.clientY;
+            original_left = this.offsetLeft;
+            original_top = this.offsetTop;
+            state = true;
+            zindex_buf = this.style.zIndex;
+            this.style.zIndex = 10000;
+        }
+        _container.onmousemove = function(event) {
+            if (state) {
+                var e = event ? event : window.event;
+                elem.style.left = e.clientX - original_x + original_left;
+                elem.style.top = e.clientY - original_y + original_top;
+            }
+        }
+        _container.onmouseup = function(event) {
+            if (state) {
+                elem.style.zIndex = zindex_buf;
+                state = false;
+                original_x = 0;
+                original_y = 0;
+                original_left = 0;
+                original_top = 0;
+            }
+        }
+    }
+    drag(document.getElementById('show'));
+    </script>
+</body>
+
+</html>

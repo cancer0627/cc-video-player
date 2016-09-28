@@ -45,7 +45,8 @@ body {
     left: 30%;
     text-align: center;
 }
-#ad1 > img:first-child{
+
+#ad1 > img:first-child {
     height: 100%;
 }
 
