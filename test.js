@@ -51,12 +51,14 @@
 
     //有声，无声
     btn_music_con.onclick = function() {
-        if (video1.muted) {
-            video1.muted = false;
-            btn_music_con.src = "source/musicup1.png";
+        if (video1.volume!=0) {
+            video1.volume=0;
+            musicbtn();
+            music_cur();
         } else {
-            video1.muted = true;
-            btn_music_con.src = "source/musicdown.png";
+            video1.volume=1;
+            musicbtn();
+            music_cur();
         }
     }
 
@@ -150,6 +152,7 @@
         } else {
             video1.volume += 0.1;
         }
+        music_cur();
     }
 
     btn_music_down.onclick = function() {
@@ -158,16 +161,17 @@
         } else {
             video1.volume -= 0.1;
         }
+        music_cur();
     }
 
     //音量拖放
     video1.onvolumechange = function() {};
-    var x1, x2, xz, xzz, x;
+    var x_sta, x_end, x_cur, x_dur, x_len;
 
     music_button.ondragstart = function(event) {
-        x1 = event.clientX;
-        xz = music_current.clientWidth;
-        xzz = music_duration.clientWidth;
+        x_sta = event.clientX;
+        x_cur = music_current.clientWidth;
+        x_dur = music_duration.clientWidth;
 
         /*console.log(event.clientX);
         console.log(music_current.offsetLeft);
@@ -180,14 +184,14 @@
     }*/
 
     music_button.ondragend = function(event) {
-        x2 = event.clientX;
-        x = (xz - x1 + x2) / xzz;
-        if (x <= 0) {
+        x_end = event.clientX;
+        x_len = (x_cur - x_sta + x_end) / x_dur;
+        if (x_len <= 0) {
             video1.volume = 0;
-        } else if (x >= 1) {
+        } else if (x_len >= 1) {
             video1.volume = 1;
         } else {
-            video1.volume = x;
+            video1.volume = x_len;
         }
         music_current.style.width = video1.volume * 100 + "%";
         musicbtn();
