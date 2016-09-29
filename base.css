@@ -3,15 +3,19 @@ body {
     /*background-color: #333;*/
 }
 
+#main_video {
+    width: 80%;
+    min-width: 800px;
+    margin: 80px auto;
+    box-shadow: 5px 5px 5px #444;
+}
+
 #v_video1 {
     position: relative;
-    width: 80%;
-    margin: 80px auto;
-    min-width: 800px;
+    width: 100%;
     padding: 0;
     /*border: 1px solid #555;*/
     background-color: #000;
-    box-shadow: 5px 5px 5px #444;
 }
 
 #media_player {
@@ -65,9 +69,55 @@ body {
     bottom: 50px;
 }
 
+#file_button {
+    position: absolute;
+    top: 40%;
+    height: 20%;
+    width: 10px;
+    right: 0;
+    background-color: #ccc;
+    z-index: 55;
+}
+
+#file_list {
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    right: 0;
+    background-color: rgba(125, 125, 125, 0.7);
+    z-index: 50;
+    box-shadow: -1px 0 2px #444;
+}
+
+.hide_file_list {
+    visibility: hidden;
+}
+
+#file_div{
+    margin: 10px;
+    display: block;
+    background-color: #fff;
+}
+
+#file_btn{
+
+    display: inline-block;
+    float: left;
+    outline: none;
+    width: 150px;
+}
+
+#add_btn{
+    display: inline-block;
+    float: right;
+    outline: none;
+}
+
 #j_jindu {
     background-color: #999;
-    background-color: rgba(255,255,255, 0.3);
+    background-color: rgba(0,0,0, 0.7);
     height: 30px;
     width: 96%;
     left: 2%;
@@ -160,7 +210,7 @@ body {
 }
 
 #btn_music_up,
-#btn_music_down{
+#btn_music_down {
     display: none;
 }
 

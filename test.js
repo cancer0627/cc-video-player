@@ -19,8 +19,28 @@
     var btn_music_down = document.getElementById('btn_music_down');
     var btn_kuaijin = document.getElementById('btn_kuaijin');
     var btn_kuaitui = document.getElementById('btn_kuaitui');
+    var file_button = document.getElementById('file_button');
+    var file_list = document.getElementById('file_list');
+    var file_btn = document.getElementById('file_btn');
+    var add_btn = document.getElementById('add_btn');
 
     jindu_duration.style.width = '100%';
+    music_duration.style.width = "100%";
+
+    file_button.onclick = function() {
+        file_list.classList.toggle("hide_file_list");
+    }
+
+    /*file_list.onmouseout=function (){
+        file_list.classList.toggle("hide_file_list");
+    }*/
+
+    add_btn.onclick = function() {
+        var file = file_btn.files[0]
+        var url = URL.createObjectURL(file);
+        console.log(url);
+        video1.src = url;
+    }
 
     //开始，暂停，快进
     btn_start.onclick = function playpause() {
@@ -123,7 +143,7 @@
 
     //视频加载时
     video1.addEventListener('loadedmetadata', function logg() {
-        video1.poster = "https://media.w3.org/2010/05/sintel/poster.png";
+        /*video1.poster = "https://media.w3.org/2010/05/sintel/poster.png";*/
         show_jindu();
         jindu_cur();
         music_cur();
