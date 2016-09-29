@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    /*background-color: #333;*/
 }
 
 #v_video1 {
@@ -8,9 +9,9 @@ body {
     margin: 80px auto;
     min-width: 800px;
     padding: 0;
-    border: 1px solid #555;
+    /*border: 1px solid #555;*/
     background-color: #000;
-    box-shadow: 5px 5px 5px #ccc;
+    box-shadow: 5px 5px 5px #444;
 }
 
 #media_player {
@@ -61,18 +62,20 @@ body {
 #btn2 {
     position: absolute;
     left: 30px;
-    bottom: 30px;
+    bottom: 50px;
 }
 
 #j_jindu {
     background-color: #999;
-    /*background-color: rgba(255,255,255, 1);*/
+    background-color: rgba(255,255,255, 0.3);
     height: 30px;
-    width: 100%;
+    width: 96%;
+    left: 2%;
     border-radius: 7px;
-    bottom: -35px;
+    bottom: 10px;
     display: block;
     position: absolute;
+    text-align: center;
 }
 
 #btn_start,
@@ -117,7 +120,7 @@ body {
     z-index: 10;
     border-radius: 5px;
     height: 8px;
-    background-color: #ddd;
+    background-color: #aaa;
     //border: 1px solid #fff;
 }
 
@@ -127,7 +130,7 @@ body {
     z-index: 15;
     border-radius: 5px;
     height: 8px;
-    background-color: #f7f7f7;
+    background-color: #ddd;
 }
 
 #jindu_button {
@@ -143,11 +146,9 @@ body {
 }
 
 #btn_music {
-    background-color: #ccc;
     display: inline-block;
     float: left;
     width: 18px;
-    margin-top: -30px;
 }
 
 #btn_music_con,
@@ -156,6 +157,11 @@ body {
     display: block;
     margin: 8px 0;
     float: left;
+}
+
+#btn_music_up,
+#btn_music_down{
+    display: none;
 }
 
 #music_tiao {
@@ -183,7 +189,7 @@ body {
     z-index: 15;
     border-radius: 5px;
     height: 8px;
-    background-color: #f7f7f7;
+    background-color: #ddd;
 }
 
 #music_button {

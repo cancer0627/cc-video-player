@@ -20,6 +20,8 @@
     var btn_kuaijin = document.getElementById('btn_kuaijin');
     var btn_kuaitui = document.getElementById('btn_kuaitui');
 
+    jindu_duration.style.width = '100%';
+
     //开始，暂停，快进
     btn_start.onclick = function playpause() {
         if (video1.paused) {
@@ -49,17 +51,49 @@
         video1.currentTime -= 5;
     }
 
-    //有声，无声
+    //有声，无声，增加音量，减小音量
     btn_music_con.onclick = function() {
-        if (video1.volume!=0) {
-            video1.volume=0;
+        if (video1.volume != 0) {
+            video1.volume = 0;
             musicbtn();
             music_cur();
         } else {
-            video1.volume=1;
+            video1.volume = 1;
             musicbtn();
             music_cur();
         }
+    }
+
+    btn_music_up.onclick = function() {
+        if (video1.volume >= 0.9) {
+            video1.volume = 1;
+        } else {
+            video1.volume += 0.1;
+        }
+        music_cur();
+        musicbtn();
+    }
+
+    btn_music_down.onclick = function() {
+        if (video1.volume <= 0.1) {
+            video1.volume = 0;
+        } else {
+            video1.volume -= 0.1;
+        }
+        music_cur();
+        musicbtn();
+    }
+
+    btn_music.onmouseover = function() {
+        btn_music_up.style.display = "block";
+        btn_music_down.style.display = "block";
+        btn_music.style.marginTop = "-60px";
+    }
+
+    btn_music.onmouseout = function() {
+        btn_music_up.style.display = "none";
+        btn_music_down.style.display = "none";
+        btn_music.style.marginTop = "0px";
     }
 
     //视频开始
@@ -89,11 +123,12 @@
 
     //视频加载时
     video1.addEventListener('loadedmetadata', function logg() {
-        video1.poster = "source/video1.jpg";
+        video1.poster = "https://media.w3.org/2010/05/sintel/poster.png";
         show_jindu();
         jindu_cur();
         music_cur();
         musicbtn();
+        console.log(video1.buffered.start(0));
     })
 
     //视频播放时
@@ -102,6 +137,7 @@
         jindu_cur();
         music_cur();
         musicbtn();
+        console.log(video1.buffered.end(0));
     }
 
     //进度
@@ -123,7 +159,8 @@
 
     function jindu_cur() {
         jindu_duration.style.width = '100%';
-        jindu_buffer.style.width = ((video1.buffered.length + video1.currentTime) / video1.duration) * 100 + '%';
+        jindu_buffer.style.left = (video1.buffered.start(0) / video1.duration) * 100 + '%';
+        jindu_buffer.style.width = ((video1.buffered.end(0) - video1.buffered.start(0)) / video1.duration) * 100 + '%';
         jindu_current.style.width = (video1.currentTime / video1.duration) * 100 + '%';
     }
 
@@ -133,7 +170,6 @@
         music_current.style.width = (video1.volume * 100) + '%';
     }
 
-    //音量进度
     function musicbtn() {
         if (video1.volume > 0.66 && video1.volume <= 1) {
             btn_music_con.src = "source/musicup3.png";
@@ -146,42 +182,14 @@
         }
     }
 
-    btn_music_up.onclick = function() {
-        if (video1.volume >= 0.9) {
-            video1.volume = 1;
-        } else {
-            video1.volume += 0.1;
-        }
-        music_cur();
-    }
-
-    btn_music_down.onclick = function() {
-        if (video1.volume <= 0.1) {
-            video1.volume = 0;
-        } else {
-            video1.volume -= 0.1;
-        }
-        music_cur();
-    }
-
-    //音量拖放
-    video1.onvolumechange = function() {};
+    //音量拖动
     var x_sta, x_end, x_cur, x_dur, x_len;
 
     music_button.ondragstart = function(event) {
         x_sta = event.clientX;
         x_cur = music_current.clientWidth;
         x_dur = music_duration.clientWidth;
-
-        /*console.log(event.clientX);
-        console.log(music_current.offsetLeft);
-        console.log(music_current.clientWidth);*/
-
     }
-
-    /*music_button.ondragleave = function(event) {
-        console.log(event.clientX);
-    }*/
 
     music_button.ondragend = function(event) {
         x_end = event.clientX;
@@ -195,10 +203,27 @@
         }
         music_current.style.width = video1.volume * 100 + "%";
         musicbtn();
+    }
 
-        /*console.log(event.clientX);
-        console.log(video1.volume);*/
+    //进度拖动
+    jindu_button.ondragstart = function(event) {
+        x_sta = event.clientX;
+        x_cur = jindu_current.clientWidth;
+        x_dur = jindu_duration.clientWidth;
+    }
 
+    jindu_button.ondragend = function(event) {
+        x_end = event.clientX;
+        x_len = (x_cur - x_sta + x_end) / x_dur;
+        if (x_len <= 0) {
+            x_len = 0;
+        } else if (x_len >= 1) {
+            x_len = 1;
+        } else {
+            x_len = x_len;
+        }
+        video1.currentTime = x_len * video1.duration;
+        jindu_cur();
     }
 
 }(window))
