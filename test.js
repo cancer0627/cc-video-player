@@ -225,6 +225,37 @@
         musicbtn();
     }
 
+    //音量点击切换
+    music_duration.onclick = function(event) {
+        x_end = event.layerX;
+        x_dur = music_duration.clientWidth;
+        x_len = x_end / x_dur;
+        if (x_len <= 0) {
+            video1.volume = 0;
+        } else if (x_len >= 1) {
+            video1.volume = 1;
+        } else {
+            video1.volume = x_len;
+        }
+        music_current.style.width = video1.volume * 100 + "%";
+        musicbtn();
+    }
+
+    music_current.onclick = function(event) {
+        x_end = event.layerX;
+        x_dur = music_duration.clientWidth;
+        x_len = x_end / x_dur;
+        if (x_len <= 0) {
+            video1.volume = 0;
+        } else if (x_len >= 1) {
+            video1.volume = 1;
+        } else {
+            video1.volume = x_len;
+        }
+        music_current.style.width = video1.volume * 100 + "%";
+        musicbtn();
+    }
+
     //进度拖动
     jindu_button.ondragstart = function(event) {
         x_sta = event.clientX;
@@ -235,6 +266,52 @@
     jindu_button.ondragend = function(event) {
         x_end = event.clientX;
         x_len = (x_cur - x_sta + x_end) / x_dur;
+        if (x_len <= 0) {
+            x_len = 0;
+        } else if (x_len >= 1) {
+            x_len = 1;
+        } else {
+            x_len = x_len;
+        }
+        video1.currentTime = x_len * video1.duration;
+        jindu_cur();
+    }
+
+    //音量点击切换
+    jindu_duration.onclick = function(event) {
+        x_end = event.layerX;
+        x_dur = jindu_duration.clientWidth;
+        x_len = x_end / x_dur;
+        if (x_len <= 0) {
+            x_len = 0;
+        } else if (x_len >= 1) {
+            x_len = 1;
+        } else {
+            x_len = x_len;
+        }
+        video1.currentTime = x_len * video1.duration;
+        jindu_cur();
+    }
+
+    jindu_buffer.onclick = function(event) {
+        x_end = event.layerX;
+        x_dur = jindu_duration.clientWidth;
+        x_len = x_end / x_dur;
+        if (x_len <= 0) {
+            x_len = 0;
+        } else if (x_len >= 1) {
+            x_len = 1;
+        } else {
+            x_len = x_len;
+        }
+        video1.currentTime = x_len * video1.duration;
+        jindu_cur();
+    }
+
+    jindu_current.onclick = function(event) {
+        x_end = event.layerX;
+        x_dur = jindu_duration.clientWidth;
+        x_len = x_end / x_dur;
         if (x_len <= 0) {
             x_len = 0;
         } else if (x_len >= 1) {
