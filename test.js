@@ -152,14 +152,14 @@
             main_video.style.height = "80%";
             main_video.style.margin = "80px auto";
             media_player.style.position = "initial";
-            btn_quanping.src="source/quanping0.png";
+            btn_quanping.src = "source/quanping0.png";
             exitFull();
         } else {
             main_video.style.width = "100%";
             main_video.style.height = "100%";
             main_video.style.margin = "0";
             media_player.style.position = "absolute";
-            btn_quanping.src="source/quanping1.png";
+            btn_quanping.src = "source/quanping1.png";
             requestFullScreen(document.documentElement);
         }
 
