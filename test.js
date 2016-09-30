@@ -1,8 +1,11 @@
 (function() {
+    var main_video = document.getElementById('main_video');
+    var media_player = document.getElementById('media_player');
+
     var video1 = document.getElementById('video1');
     var ad1 = document.getElementById('ad1');
-    var btn1 = document.getElementById('btn1');
-    var btn2 = document.getElementById('btn2');
+    var btn_ad = document.getElementById('btn_ad');
+    var btn_sta_lar = document.getElementById('btn_sta_lar');
     var btn_start = document.getElementById('btn_start');
     var jindu = document.getElementById('jindu');
     var jindu_tiao = document.getElementById('jindu_tiao');
@@ -23,6 +26,7 @@
     var file_list = document.getElementById('file_list');
     var file_btn = document.getElementById('file_btn');
     var add_btn = document.getElementById('add_btn');
+    var btn_quanping = document.getElementById('btn_quanping');
 
     jindu_duration.style.width = '100%';
     music_duration.style.width = "100%";
@@ -120,25 +124,81 @@
     video1.onplay = function() {
         console.log("video play");
         ad1.style.display = "none";
-        btn2.style.display = "none";
+        btn_sta_lar.style.display = "none";
         btn_start.src = "source/stop.png";
     }
 
     //视频暂停
     video1.onpause = function() {
         ad1.style.display = 'initial';
-        btn2.style.display = 'initial';
+        btn_sta_lar.style.display = 'initial';
         btn_start.src = "source/start.png";
     }
 
     //广告关闭
-    btn1.onclick = function() {
+    btn_ad.onclick = function() {
         ad1.style.display = "none";
     }
 
     //开始按钮
-    btn2.onclick = function() {
+    btn_sta_lar.onclick = function() {
         video1.play();
+    }
+
+    //全屏
+    btn_quanping.onclick = function() {
+        if (btn_quanping.src.match("quanping1.png")) {
+            main_video.style.width = "80%";
+            main_video.style.height = "80%";
+            main_video.style.margin = "80px auto";
+            media_player.style.position = "initial";
+            btn_quanping.src="source/quanping0.png";
+            exitFull();
+        } else {
+            main_video.style.width = "100%";
+            main_video.style.height = "100%";
+            main_video.style.margin = "0";
+            media_player.style.position = "absolute";
+            btn_quanping.src="source/quanping1.png";
+            requestFullScreen(document.documentElement);
+        }
+
+    }
+
+    function requestFullScreen(element) {
+        // 判断各种浏览器，找到正确的方法
+        var requestMethod = element.requestFullScreen || //W3C
+            element.webkitRequestFullScreen || //Chrome等
+            element.mozRequestFullScreen || //FireFox
+            element.msRequestFullScreen; //IE11
+        if (requestMethod) {
+            requestMethod.call(element);
+        } else if (typeof window.ActiveXObject !== "undefined") { //for Internet Explorer
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+    }
+
+    //退出全屏 判断浏览器种类
+    function exitFull() {
+
+
+        // 判断各种浏览器，找到正确的方法
+        var exitMethod = document.exitFullscreen || //W3C
+            document.mozCancelFullScreen || //Chrome等
+            document.webkitExitFullscreen || //FireFox
+            document.webkitExitFullscreen; //IE11
+        if (exitMethod) {
+            exitMethod.call(document);
+        } else if (typeof window.ActiveXObject !== "undefined") { //for Internet Explorer
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+
     }
 
     //视频加载时
