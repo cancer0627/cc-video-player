@@ -149,7 +149,6 @@
     btn_quanping.onclick = function() {
         if (btn_quanping.src.match("quanping1.png")) {
             main_video.style.width = "80%";
-            main_video.style.height = "80%";
             main_video.style.margin = "80px auto";
             media_player.style.position = "initial";
             btn_quanping.src = "source/quanping0.png";

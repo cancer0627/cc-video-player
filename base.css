@@ -5,6 +5,7 @@ body {
 
 #main_video {
     width: 80%;
+    height: 80%;
     min-width: 800px;
     margin: 80px auto;
     box-shadow: 5px 5px 5px #444;
@@ -13,6 +14,7 @@ body {
 #v_video1 {
     position: relative;
     width: 100%;
+    height: 100%;
     padding: 0;
     /*border: 1px solid #555;*/
     background-color: #000;
@@ -37,6 +39,7 @@ body {
 
 #video1 {
     width: 100%;
+    height: 600px;
     display: block;
 }
 
@@ -218,7 +221,7 @@ body {
     display: inline-block;
     float: left;
     position: relative;
-    width: 10%;
+    width: 7%;
     height: 10px;
     margin: 10px 20px;
     /*border: 1px solid #fff;*/
@@ -257,5 +260,5 @@ body {
 #btn_quanping {
     display: inline-block;
     float: right;
-    margin: 6px 0;
+    margin: 6px 10px 6px 0;
 }
