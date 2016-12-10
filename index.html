@@ -9,52 +9,53 @@
 </head>
 
 <body>
-    <div id="main_video">
-        <div id="media_player">
-            <strong>【 </strong>MEDIA-PLAYER<strong> 】</strong>
+<div id="main_video">
+    <div id="media_player">
+        <strong>【 </strong>MEDIA-PLAYER<strong> 】</strong>
+    </div>
+    <div id="v_video">
+        <video id="video" src="https://media.w3.org/2010/05/sintel/trailer.mp4"></video>
+        <!--<video id="video" src="source/1.mp4"></video>-->
+        <img width="250" id="btn_start_large" src="source/btn2.png">
+        <div id="file_open_btn"></div>
+        <div id="file_list" class="hide_file_list">
+            <div id="file_close_btn"></div>
+            <div id="file_div">
+                <input id="file_btn" type="file" name="">
+                <button id="add_btn">导入</button>
+            </div>
         </div>
-        <div id="v_video1">
-            <video id="video1" src="https://media.w3.org/2010/05/sintel/trailer.mp4">
-            </video>
-            <div id="ad1">
-                <img src="source/1.jpeg">
-                <img id="btn_ad" src="source/btn1.png">
+        <div id="j_jindu">
+            <div>
+                <img id="btn_kuaitui" height="14" src="source/kuaitui.png">
+                <img id="btn_start" width="14" src="source/start.png">
+                <img id="btn_kuaijin" height="14" src="source/kuaijin.png">
             </div>
-            <img width="100px" id="btn_sta_lar" src="source/btn2.png">
-            <div id="file_button"></div>
-            <div id="file_list" class="hide_file_list">
-                <div id="file_div">
-                    <input id="file_btn" type="file" name="">
-                    <button id="add_btn">导入</button>
+            <div id="jindu">0:00</div>
+            <div id="jindu_tiao">
+                <div id="jindu_duration"></div>
+                <div id="jindu_buffer"></div>
+                <div id="jindu_current">
+                    <div id="jindu_button" draggable="true"></div>
                 </div>
             </div>
-            <div id="j_jindu">
-                <img id="btn_kuaitui" height="14px" src="source/kuaitui.png">
-                <img id="btn_start" width="14px" src="source/start.png">
-                <img id="btn_kuaijin" height="14px" src="source/kuaijin.png">
-                <div id="jindu"></div>
-                <div id="jindu_tiao">
-                    <div id="jindu_duration"></div>
-                    <div id="jindu_buffer"></div>
-                    <div id="jindu_current">
-                        <div id="jindu_button" draggable="true"></div>
-                    </div>
+            <div id="btn_music">
+                <img id="btn_music_up" height="14" src="source/musicup_button.png">
+                <img id="btn_music_down" height="14" src="source/musicdown_button.png">
+                <img id="btn_music_con" height="14" src="source/musicdown.png">
+            </div>
+            <div id="music_tiao">
+                <div id="music_duration"></div>
+                <div id="music_current">
+                    <div id="music_button" draggable="true"></div>
                 </div>
-                <div id="btn_music">
-                    <img id="btn_music_up" height="14px" src="source/musicup_button.png">
-                    <img id="btn_music_down" height="14px" src="source/musicdown_button.png">
-                    <img id="btn_music_con" height="14px" src="source/musicdown.png">
-                </div>
-                <div id="music_tiao">
-                    <div id="music_duration"></div>
-                    <div id="music_current">
-                        <div id="music_button" draggable="true"></div>
-                    </div>
-                </div>
-                <img width="18px" id="btn_quanping" src="source/quanping0.png">
+            </div>
+            <div>
+                <img width="18" id="btn_quanping" src="source/quanping0.png">
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

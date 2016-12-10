@@ -1,22 +1,26 @@
 body {
     margin: 0;
-    /*background-color: #333;*/
 }
 
 #main_video {
     width: 80%;
     height: 80%;
-    min-width: 800px;
+    min-width: 900px;
     margin: 80px auto;
     box-shadow: 5px 5px 5px #444;
 }
 
-#v_video1 {
-    position: relative;
+#main_video.fullscreen {
     width: 100%;
     height: 100%;
+    min-width: 900px;
+    margin: 0;
+}
+
+#v_video {
+    position: relative;
+    height: 100%;
     padding: 0;
-    /*border: 1px solid #555;*/
     background-color: #000;
 }
 
@@ -32,47 +36,23 @@ body {
     text-shadow: 1px 1px 1px #ccc;
 }
 
-#video1_title {
-    text-align: center;
-    padding: 15px 0;
+#media_player.fullscreen {
+    display: none;
 }
 
-#video1 {
+#video {
     width: 100%;
-    height: 600px;
     display: block;
 }
 
-#ad1 {
-    width: 40%;
-    height: 40%;
-    background-color: #ccc;
+#btn_start_large {
     position: absolute;
-    visibility: visible;
-    top: 30%;
-    left: 30%;
-    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#ad1 > img:first-child {
-    height: 100%;
-}
-
-#btn_ad {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    right: -15px;
-    top: -15px;
-}
-
-#btn_sta_lar {
-    position: absolute;
-    left: 30px;
-    bottom: 50px;
-}
-
-#file_button {
+#file_open_btn {
     position: absolute;
     top: 40%;
     height: 20%;
@@ -92,6 +72,16 @@ body {
     background-color: rgba(125, 125, 125, 0.7);
     z-index: 50;
     box-shadow: -1px 0 2px #444;
+}
+
+#file_close_btn {
+    position: absolute;
+    top: 40%;
+    height: 20%;
+    width: 10px;
+    left: 0;
+    background-color: #ccc;
+    z-index: 55;
 }
 
 .hide_file_list {
@@ -116,46 +106,51 @@ body {
     float: right;
     outline: none;
 }
-
+/*-------------------------------------------------------------------------------------------------------------------*/
 #j_jindu {
-    background-color: #999;
     background-color: rgba(0, 0, 0, 0.7);
     height: 30px;
-    width: 96%;
-    left: 2%;
-    border-radius: 7px;
-    bottom: 10px;
-    display: block;
-    position: absolute;
+    margin: 15px 1%;
+    padding: 0 2%;
+    width: 94%;
+    border-radius: 10px;
     text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+
+#j_jindu > div {
+    display: inline-block;
+}
+
+#j_jindu > div + div {
+    margin-left: 20px;
 }
 
 #btn_start,
 #btn_kuaijin,
 #btn_kuaitui {
-    display: inline-block;
-    float: left;
-    margin: 8px 10px;
+    margin: 8px 0;
+}
+
+#btn_start,
+#btn_kuaijin {
+    margin-left: 20px;
 }
 
 #jindu {
-    display: inline-block;
-    float: left;
+    position: relative;
+    top: -10px;
     color: #fff;
     font-size: 14px;
-    line-height: 30px;
     font-family: arial;
-    width: 60px;
 }
 
 #jindu_tiao {
-    display: inline-block;
-    float: left;
     position: relative;
     width: 50%;
     height: 10px;
-    margin: 10px 20px;
-    /*border: 1px solid #fff;*/
+    margin: 10px 0;
 }
 
 #jindu_duration {
@@ -174,7 +169,6 @@ body {
     border-radius: 5px;
     height: 8px;
     background-color: #aaa;
-    /*//border: 1px solid #fff;*/
 }
 
 #jindu_current {
@@ -199,8 +193,6 @@ body {
 }
 
 #btn_music {
-    display: inline-block;
-    float: left;
     width: 18px;
 }
 
@@ -209,7 +201,6 @@ body {
 #btn_music_down {
     display: block;
     margin: 8px 0;
-    float: left;
 }
 
 #btn_music_up,
@@ -218,13 +209,10 @@ body {
 }
 
 #music_tiao {
-    display: inline-block;
-    float: left;
     position: relative;
     width: 7%;
     height: 10px;
-    margin: 10px 20px;
-    /*border: 1px solid #fff;*/
+    margin: 10px 0;
 }
 
 #music_duration {
@@ -239,7 +227,7 @@ body {
 #music_current {
     position: absolute;
     top: 1px;
-    z-index: 15;
+    z-index: 10;
     border-radius: 5px;
     height: 8px;
     background-color: #ddd;
@@ -249,7 +237,7 @@ body {
     position: absolute;
     top: -3px;
     right: -7px;
-    z-index: 20;
+    z-index: 15;
     border-radius: 6px;
     border: 1px solid #fff;
     height: 12px;
@@ -258,7 +246,5 @@ body {
 }
 
 #btn_quanping {
-    display: inline-block;
-    float: right;
-    margin: 6px 10px 6px 0;
+    margin: 6px 0;
 }
